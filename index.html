@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PagPrático | Links de pagamento automatizados</title>
+  <title>AutoPrático | Automações sob medida para o seu dia a dia</title>
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -25,7 +25,7 @@
       font-size: 32px;
       margin-bottom: 16px;
     }
-    p {
+    p, ul li {
       font-size: 18px;
       line-height: 1.6;
     }
@@ -54,26 +54,64 @@
       max-width: 120px;
       margin-bottom: 24px;
     }
+    .success-message {
+      margin-top: 16px;
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="logo_autopratico.png" alt="PagPrático Logo" class="logo">
-    <h1>Automatize seus pagamentos com praticidade</h1>
-    <p>O PagPrático transforma sua planilha Excel em uma máquina de cobranças inteligente. Gere links de pagamento e envie e-mails automáticos com poucos cliques.</p>
+    <img src="logo_autopratico.png" alt="AutoPrático Logo" class="logo">
+    <h1>Automatize o que puder ser automatizado</h1>
+    <p>O <strong>AutoPrático</strong> é especialista em criar automações operacionais e analíticas para pessoas e pequenos negócios que valorizam produtividade e simplicidade.</p>
+    <p>Desenvolvemos soluções como:</p>
     <ul>
-      <li>Integração com Mercado Pago</li>
-      <li>Envio automático por e-mail</li>
-      <li>Sem precisar saber programar</li>
+      <li>Geração de links de pagamento (cartão, Pix, boleto) com envio automático por e-mail</li>
+      <li>Checagem de status de pagamento e atualização automática de planilhas</li>
+      <li>Dashboards automatizados (Excel, Google Sheets, Power BI)</li>
+      <li>Envios de e-mails automatizados com base em regras ou eventos</li>
+      <li>Desenvolvimento sob demanda, de acordo com a necessidade do cliente</li>
     </ul>
+    <p>Ideal para prestadores de serviço, autônomos, MEIs, pequenas empresas ou qualquer pessoa inteligente que veja a necessidade de automatizar uma tarefa do dia a dia.</p>
     <div class="form">
-      <h3>Receba acesso gratuito antecipado</h3>
-      <form action="https://formsubmit.co/seuemail@email.com" method="POST">
-        <input type="text" name="nome" placeholder="Seu nome" required />
-        <input type="email" name="email" placeholder="Seu melhor e-mail" required />
-        <button type="submit">Quero testar gratuitamente</button>
+      <h3>Receba um contato para entender sua necessidade</h3>
+      <form id="leadForm">
+        <input type="text" id="nome" placeholder="Seu nome" required />
+        <input type="email" id="email" placeholder="Seu melhor e-mail" required />
+        <input type="text" id="mensagem" placeholder="Descreva o que você gostaria de automatizar" required />
+        <button type="submit">Quero conversar sobre automação</button>
+        <div class="success-message" id="successMessage" style="display:none;">Mensagem enviada com sucesso!</div>
       </form>
     </div>
   </div>
+
+  <script>
+    document.getElementById("leadForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const mensagem = document.getElementById("mensagem").value;
+
+      fetch("https://script.google.com/macros/s/AKfycbz0Fiv0flJeljrutSDF7tsoK24uzb3rXSk0-I9FPrf9c5b8bPk92PlwAITPgskOUAfa/exec", {
+        method: "POST",
+        body: JSON.stringify({ nome, email, mensagem }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("leadForm").reset();
+      })
+      .catch(error => {
+        alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
+        console.error(error);
+      });
+    });
+  </script>
 </body>
 </html>
