@@ -89,29 +89,29 @@
 
   <script>
     document.getElementById("leadForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+        e.preventDefault();
 
-      const nome = document.getElementById("nome").value;
-      const email = document.getElementById("email").value;
-      const mensagem = document.getElementById("mensagem").value;
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const mensagem = document.getElementById("mensagem").value;
 
-      fetch("https://script.google.com/macros/s/AKfycbz0Fiv0flJeljrutSDF7tsoK24uzb3rXSk0-I9FPrf9c5b8bPk92PlwAITPgskOUAfa/exec", {
-        method: "POST",
-        body: JSON.stringify({ nome, email, mensagem }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("successMessage").style.display = "block";
-        document.getElementById("leadForm").reset();
-      })
-      .catch(error => {
-        alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
-        console.error(error);
-      });
-    });
+        fetch("https://script.google.com/macros/s/AKfycbz0Fiv0flJeljrutSDF7tsoK24uzb3rXSk0-I9FPrf9c5b8bPk92PlwAITPgskOUAfa/exec", {
+            method: "POST",
+            body: JSON.stringify({ nome, email, mensagem }),
+            headers: {
+            "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("successMessage").style.display = "block";
+            document.getElementById("leadForm").reset();
+        })
+        .catch(error => {
+            alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
+            console.error(error);  // Isso ajuda a ver o erro no navegador
+        });
+        });
   </script>
 </body>
 </html>
